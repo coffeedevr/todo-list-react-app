@@ -1,0 +1,118 @@
+#root {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  /* background-image: url('./assets/background.jpg');
+  background-repeat: no-repeat;
+  background-size: cover; */
+}
+
+.App {
+  text-align: center;
+  padding: 20px 20px 0px 20px;
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  flex: 1;
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.header-component {
+  margin: 0;
+  box-shadow: 0 4px 2px -2px gray;
+  background-color: white;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px 30px;
+  min-width: 640px
+}
+
+.header-wrapper {
+  display: flex;
+  justify-items: center;
+  align-items: center;
+  gap: 2rem;
+}
+
+#header-text {
+  margin: 0;
+  font-size: 3rem;
+  font-family: 'Bree Serif', var(--system-ui);
+  letter-spacing: 4px;
+  font-weight: 700;
+}
+
+#header-logo {
+  height: 100px;
+}
+
+.footer-component {
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  bottom: 0;
+  font-size: 1rem;
+  padding: 5px 10px;
+  font-family: 'Tilt Neon', var(--system-ui)
+}
+
+#github-logo {
+  height: 40px;
+  width: 40px;
+}
+
+#footer-text {
+  margin: 0;
+}
+
+.content-component > h2,
+.sidebar-component > h2 {
+  font-size: 1.5rem;
+}
+
+@media screen and (max-width: 750px),
+       screen and (max-height: 850px) {
+
+  .header-component {
+    min-width: 380px;
+    font-size: 2rem;
+    padding: 10px;
+  }
+
+  #header-text {
+    font-size: 2rem;
+  }
+
+  .header-wrapper {
+    gap: 10px;
+  }
+
+  #header-logo {
+    height: 45px;
+    width: 45px;
+  }
+
+  .footer-component {
+    min-width: 380px;
+  }
+
+  .App {
+    display: flex;
+    flex-direction: column;
+    padding: 0;
+    min-width: 400px;
+    gap: 0;
+  }
+}

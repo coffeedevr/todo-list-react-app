@@ -1,0 +1,193 @@
+.content-component {
+    margin: 0;
+    box-shadow: 3px 3px 3px rgb(73, 73, 73);
+    flex-grow: 1;
+    background-color: white;
+}
+
+.content-header {
+    padding: 0px 20px;
+    background-color: rgb(85,170,232);
+    display: flex;
+    align-items: center;
+}
+
+#add-task-btn {
+    padding: 0;
+    margin-left: auto;
+    border-radius: 50%;
+    height: 64px;
+    width: 64px;
+    border: none;
+}
+
+#add-btn-img {
+    height: 64px;
+    width: 64px;
+    cursor: pointer;
+}
+
+#add-btn-img:hover {
+    transform: scale(1.08);
+}
+
+#content-header-text {
+    margin: 0;
+    color: white;
+    font-size: 2rem;
+    text-align: left;
+    padding: 20px 0px;
+}
+
+.content-container {
+    padding: 20px 20px 10px 20px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    overflow-y: auto;
+    max-height: 520px;
+}
+
+input[type="checkbox"] {
+    height: 25px;
+    width: 25px;
+    margin-right: 5px;
+    cursor: pointer;
+}
+
+.urgent-task {
+    border-left: 20px solid rgb(250, 84, 84);
+}
+
+.important-task {
+    border-left: 20px solid rgb(250, 192, 84);
+}
+
+.normal-task {
+    border-left: 20px solid rgb(103, 185, 103);
+}
+
+.tasks-card > * {
+    margin: 0;
+}
+
+.tasks-card {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    width: 100%;
+    padding: 10px 15px;
+    box-shadow: 0 4px 2px -2px gray;
+    gap: 10px;
+}
+
+.tasks-title {
+    font-family: 'Alkatra', var(--system-ui);
+    letter-spacing: 1px;
+    font-size: 1.2rem;
+    cursor: pointer;
+    margin: 0 auto 0 0;
+}
+
+.tasks-due {
+    font-family: 'Gentium Book Plus';
+    font-size: 0.9rem;
+}
+
+.tasks-prio {
+    font-family: 'Gentium Book Plus';
+    font-size: 0.9rem;
+    outline: 1px solid green;
+    padding: 5px;
+    color: green;
+    width: 100px;
+    text-align: center;
+}
+
+.crossed {
+    text-decoration: line-through;
+    background-color: rgb(65, 65, 65);
+    color: white;
+    fill: white;
+}
+
+#edit-btn:hover,
+#del-btn:hover {
+    fill: rgba(0,0,0, 0.7)
+}
+
+.edit-btn {
+    background-image: url('../assets/file-edit.png');
+}
+
+.del-btn {
+    background-image: url('../assets/delete.png');
+}
+
+.edit-btn,
+.del-btn {
+    height: 25px;
+    width: 25px;
+    cursor: pointer;
+    fill: rgba(0,0,0, 1);
+    background-size: 25px;
+    background-position: center;
+    padding: 0;
+    border: 0;
+    background-color: transparent;
+}
+
+@media screen and (max-width: 750px),
+       screen and (max-height: 850px) {
+
+    .content-component {
+      min-width: 400px
+    }
+
+    .content-container {
+        max-height: 520px;
+        padding: 15px;
+    }
+
+    .content-header {
+        position: sticky;
+        top: 0;
+        box-shadow: 1px 4px 3px -1px gray;
+    }
+
+    #content-header-text {
+        text-align: center;
+        font-size: 1.5rem;
+    }
+    .tasks-title {
+        font-size: 1rem;
+    }
+
+    .tasks-due {
+        display: none;
+    }
+
+    .tasks-prio {
+        font-size: .8rem;
+        width: auto;
+        outline: none;
+        padding: 0;
+    }
+
+    input[type="checkbox"] {
+        height: 20px;
+        width: 20px;
+        margin-right: 5px;
+        cursor: pointer;
+    }
+
+    #add-btn-img {
+        height: 50px;
+        width: 50px;
+    }
+
+    #add-task-btn {
+        height: 50px;
+        width: 50px;
+    }
+}
