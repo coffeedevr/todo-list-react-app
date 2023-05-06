@@ -4,28 +4,44 @@ import Header from "./components/Header";
 import Footer from "./components/Footer";
 import Sidebar from "./components/Sidebar";
 import Content from "./components/Content";
+import AddBook from './components/AddBook'
 
 export const UserSelection = createContext(null)
 
-function App() {
+export default function App() {
   const [selection, setSelection] = useState('default')
+  const [body, setBody] = useState(0)
+  const [sidebarOff, setSidebarOff] = useState(0)
 
   useEffect(() => {
     
-  }, [selection])
+  }, [selection, body])
 
   return (
-    <>
-    <Header />
-    <div className="App">
-      <UserSelection.Provider value={selection}>
-        <Sidebar setSelection={setSelection}/>
-        <Content />
-      </UserSelection.Provider>
-    </div>
-    <Footer />
-    </>
+    <Body body={body} setBody={setBody} selection={selection} setSelection={setSelection} sidebarOff={sidebarOff} setSidebarOff={setSidebarOff}/>
   );
 }
 
-export default App;
+function Body (props) {
+  return props.body === 0 ? 
+      (
+        <>
+        <Header body={props.body} setBody={props.setBody} setSidebarOff={props.setSidebarOff}/>
+          <div className="App">
+            <UserSelection.Provider value={props.selection}>
+              <Sidebar setSelection={props.setSelection} sidebarOff={props.sidebarOff} setSidebarOff={props.setSidebarOff}/>
+              <Content />
+            </UserSelection.Provider>
+          </div>
+        <Footer />
+        </> ) : 
+      (
+      <>
+        <Header body={props.body} setBody={props.setBody} sidebarOff={props.sidebarOff} setSidebarOff={props.setSidebarOff}/>
+        <div className="App">
+          <Sidebar setSelection={props.setSelection} sidebarOff={props.sidebarOff} setSidebarOff={props.setSidebarOff} />
+          <AddBook />
+        </div>
+        <Footer />
+      </> )
+}

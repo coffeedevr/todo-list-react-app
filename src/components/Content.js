@@ -1,5 +1,4 @@
 import '../styles/Content.css'
-import AddImg from '../assets/add.png'
 import React, { useState, useEffect, useContext } from "react";
 import { TaskModule } from "../modules/tasks_module";
 import { UserSelection } from '../App'
@@ -24,9 +23,6 @@ export default function Content () {
         <div className="content-component">
             <div className="content-header">
                 <h2 id="content-header-text">Your Tasks</h2>
-                <button type="button" id="add-task-btn">
-                    <img id="add-btn-img" src={AddImg} alt="" />
-                </button>
             </div>
             <div className="content-container">
                 <LoadTasks select={selection} tasks={tasks} setTasks={setTasks}/>

@@ -57,6 +57,25 @@
   height: 100px;
 }
 
+#add-task-btn {
+  padding: 0;
+  margin-left: auto;
+  border-radius: 50%;
+  height: 64px;
+  width: 64px;
+  border: none;
+}
+
+#add-btn-img {
+  height: 64px;
+  width: 64px;
+  cursor: pointer;
+}
+
+#add-btn-img:hover {
+  transform: scale(1.08);
+}
+
 .footer-component {
   margin: 0;
   display: flex;
@@ -114,5 +133,11 @@
     padding: 0;
     min-width: 400px;
     gap: 0;
+  }
+}
+
+@media screen and (max-width: 400px) {
+  #add-task-btn {
+    margin-left: 0;
   }
 }

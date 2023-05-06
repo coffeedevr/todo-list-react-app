@@ -6,10 +6,14 @@ import WarningImg from '../assets/warning.png'
 import TearOffCalendar from '../assets/tear-off-calendar.png'
 
 export default function Sidebar (props) {
+    const sidebarClass = (val) => {
+        return val === 0 ? 'sidebar-nav' : 'sidebar-nav disable-sidebar'
+    }
+
     return (
         <div className="sidebar-component">
             <h2>Home</h2>
-            <nav className="sidebar-nav">
+            <nav className={sidebarClass(props.sidebarOff)}>
                 <li className="selected" id="default" onClick={selectNav}><img src={ClipboardImg} alt=""/><p>Tasks</p></li>
                 <li id="today" onClick={selectNav}><img src={TearOffCalendar} alt=""/><p>Today</p></li>
                 <li id="important" onClick={selectNav}><img src={WarningImg} alt=""/><p>Important</p></li>
