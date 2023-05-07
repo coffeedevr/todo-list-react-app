@@ -40,7 +40,7 @@ function Body (props) {
         <Header body={props.body} setBody={props.setBody} sidebarOff={props.sidebarOff} setSidebarOff={props.setSidebarOff}/>
         <div className="App">
           <Sidebar setSelection={props.setSelection} sidebarOff={props.sidebarOff} setSidebarOff={props.setSidebarOff} />
-          <AddBook />
+          <AddBook setBody={props.setBody} setSidebarOff={props.setSidebarOff}/>
         </div>
         <Footer />
       </> )

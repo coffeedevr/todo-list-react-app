@@ -12,7 +12,6 @@ export default function Content () {
 
     useEffect(() => {
         localStorage.getItem('counter') === null ? localStorage.setItem('counter', JSON.stringify(counter)) : setTasks(TaskModule.retrieveTasks())
-        TaskModule.createTask('title', 'desc', format(new Date(), 'yyyy-MM-dd'), 'Important', 'proj')
     }, [])
 
     useEffect(() => {
@@ -25,7 +24,7 @@ export default function Content () {
                 <h2 id="content-header-text">Your Tasks</h2>
             </div>
             <div className="content-container">
-                <LoadTasks select={selection} tasks={tasks} setTasks={setTasks}/>
+                <LoadTasks select={selection} tasks={tasks} setTasks={setTasks} />
             </div>
         </div>
     )
@@ -91,10 +90,10 @@ function TaskCard ({note, setTasks, selection}) {
     return (
         <>
         <input id={note + "-check"} type="checkbox" onClick={crossTask} defaultChecked={TaskModule.getTask(note).check} ></input>
-        <p className="tasks-title" id={note + `-title-text`}>{TaskModule.getTask(note).title}</p>
+        <p className="tasks-title" id={note + `-title-text`} onMouseOver={showTaskDesc} onMouseOut={showTaskTitle}>{TaskModule.getTask(note).title}</p>
         <p className="tasks-prio" id={note + `-prio-text`}>{TaskModule.getTaskDue(Storage.getTask(note).dueDate)}</p>
         <p className="tasks-due" id={note + `-due-text`}>{TaskModule.getTask(note).dueDate}</p>
-        <div className="notes-control-wrapper" id={note  + 'control-wrapper'}>
+        <div className="notes-control-wrapper" id={note  + '-control-wrapper'}>
             <button className="edit-btn" id={"edit-" + note}></button>
             <button className="del-btn" id={"del-" + note} onClick={deleteTask}></button>
         </div>
@@ -119,3 +118,37 @@ const getTasks = (select) => {
     }
     return arr
 }
+
+function showTaskDesc(event) {
+    const parentId = event.target.parentNode.id
+    const task = Storage.getTask(parentId)
+  
+    const element = document.getElementById(event.target.id)
+    const check = document.getElementById(parentId + '-check')
+    const prioText = document.getElementById(parentId + '-prio-text')
+    const dueText = document.getElementById(parentId + '-due-text')
+    const control = document.getElementById(parentId + '-control-wrapper')
+  
+    task.description.length >= 1 ? element.textContent = task.description : element.textContent = 'No description available'
+    prioText.classList.toggle('hide')
+    dueText.classList.toggle('hide')
+    control.classList.toggle('hide')
+    check.classList.toggle('hide')
+}
+
+function showTaskTitle (event) {
+    const parentId = event.target.parentNode.id
+    const task = Storage.getTask(parentId)
+  
+    const element = document.getElementById(event.target.id)
+    const check = document.getElementById(parentId + '-check')
+    const prioText = document.getElementById(parentId + '-prio-text')
+    const dueText = document.getElementById(parentId + '-due-text')
+    const control = document.getElementById(parentId + '-control-wrapper')
+  
+    element.textContent = task.title
+    prioText.classList.toggle('hide')
+    dueText.classList.toggle('hide')
+    control.classList.toggle('hide')
+    check.classList.toggle('hide')
+  }

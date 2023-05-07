@@ -65,7 +65,7 @@
     color: white;
 }
 
-@media screen and (max-width: 750px),
+@media screen and (max-width: 800px),
        screen and (max-height: 850px) {
     
     .sidebar-component {

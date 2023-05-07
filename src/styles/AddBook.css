@@ -1,52 +1,152 @@
+label {
+    font-size: 1.5rem;
+    font-weight: 800;
+    font-family: 'Gentium Book Plus';
+    width: 100%;
+    text-align: left;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
 .form-container {
+    padding-top: 20px;
     font-size: 1.5rem;
     display: flex;
     flex-direction: column;
+    align-items: center;
+    flex-grow: 1;
+    gap: 15px;
 }
 
 .form-controls {
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
+    gap: 5%;
+    padding: 10px;
+    justify-content: center;
+    width: 100%;
 }
 
 .form-col-1 {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    gap: 15px;
+    min-width: 350px;
+    gap: 10px;
 }
 
 .form-col-2 {
-    margin-left: auto;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
+    min-width: 500px;
+    gap: 10px;
 }
 
 input[type="date"] {
-    margin-left: 10px;
-    font-size: 1rem;
+    font-size: 1.5rem;
     border: 0;
     border-bottom: 2px solid black;
     outline: none;
+    width: 100%;
+    font-family: 'Gentium Book Plus';
 }
 
 select {
-    font-size: 1.2rem;
+    font-size: 1.5rem;
     outline: none;
-    margin-left: 10px;
+    width: 100%;
+    font-family: 'Gentium Book Plus';
+}
+
+textarea {
+    resize: none;
 }
 
 textarea,
 input[type="text"] {
-    font-size: 1.2rem;
+    font-size: 1.5rem;
     border: 0;
     border-bottom: 2px solid black;
     outline: none;
+    width: 100%;
+    font-family: 'Gentium Book Plus';
 }
 
 textarea::placeholder,
 input::placeholder {
+    font-size: 1.2rem;
     font-family: 'Bree Serif', var(--system-ui);
+}
+
+.form-span {
+    color: red;
+    font-size: 1.2rem;
+    font-weight: 500;
+}
+
+.text-valid {
+    color: green;
+}
+
+.form-button {
+    width: 180px;
+    height: 60px;
+    border: 0;
+    outline: 0;
+    border-radius: 50px;
+    font-size: 1.5rem;
+    font-family: "Bree Serif", var(--system-ui);
+    color: white;
+    background-color: var(--main-color);
+    cursor: pointer;
+}
+
+#cancel-btn {
+    background-color: rgb(228, 77, 77);
+}
+
+#task-title:invalid {
+    border-bottom: 2px solid red;
+}
+
+#task-title:valid {
+    border-bottom: 2px solid rgb(0, 158, 26);
+}
+
+#dueDate:valid {
+    outline: none;
+    border: 2px solid  rgb(0, 158, 26);
+}
+
+#dueDate:invalid {
+    outline: none;
+    border: 2px solid red;
+}
+
+@media screen and (max-width: 1250px) {
+    .form-container { padding-top: 0px; }
+
+    .form-controls {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        padding: 10px;
+    }
+
+    .form-container {
+        gap: 15px
+    }
+}
+
+@media screen and (max-width: 550px) {
+
+    .form-col-1 {
+        min-width: 150px
+    }
+
+    .form-col-2 {
+        min-width: 150px
+    }
 }

@@ -6,7 +6,6 @@ function Task (title, description, dueDate, priority, project) {
   this.description = description
   this.dueDate = dueDate
   this.priority = priority
-  this.project = project
   this.check = false
 }
 
