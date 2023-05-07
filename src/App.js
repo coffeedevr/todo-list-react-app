@@ -4,7 +4,7 @@ import Header from "./components/Header";
 import Footer from "./components/Footer";
 import Sidebar from "./components/Sidebar";
 import Content from "./components/Content";
-import AddBook from './components/AddBook'
+import AddTask from './components/AddTask'
 
 export const UserSelection = createContext(null)
 
@@ -40,7 +40,7 @@ function Body (props) {
         <Header body={props.body} setBody={props.setBody} sidebarOff={props.sidebarOff} setSidebarOff={props.setSidebarOff}/>
         <div className="App">
           <Sidebar setSelection={props.setSelection} sidebarOff={props.sidebarOff} setSidebarOff={props.setSidebarOff} />
-          <AddBook setBody={props.setBody} setSidebarOff={props.setSidebarOff}/>
+          <AddTask setBody={props.setBody} setSidebarOff={props.setSidebarOff}/>
         </div>
         <Footer />
       </> )
