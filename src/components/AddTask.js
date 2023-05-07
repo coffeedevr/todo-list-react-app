@@ -1,9 +1,9 @@
-import '../styles/AddBook.css'
+import '../styles/Form.css'
 import React from "react";
 import { format, isBefore, parseISO } from 'date-fns'
 import { TaskModule } from '../modules/tasks_module';
 
-export default function AddBookForm (props) {
+export default function AddTask (props) {
 
     function cancelForm() {
         props.setBody(0)

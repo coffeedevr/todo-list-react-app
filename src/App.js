@@ -5,6 +5,7 @@ import Footer from "./components/Footer";
 import Sidebar from "./components/Sidebar";
 import Content from "./components/Content";
 import AddTask from './components/AddTask'
+import EditTask from "./components/EditTask";
 
 export const UserSelection = createContext(null)
 
@@ -23,25 +24,25 @@ export default function App() {
 }
 
 function Body (props) {
-  return props.body === 0 ? 
+  return props.body === 1 ? 
       (
         <>
-        <Header body={props.body} setBody={props.setBody} setSidebarOff={props.setSidebarOff}/>
-          <div className="App">
-            <UserSelection.Provider value={props.selection}>
-              <Sidebar setSelection={props.setSelection} sidebarOff={props.sidebarOff} setSidebarOff={props.setSidebarOff}/>
-              <Content />
-            </UserSelection.Provider>
-          </div>
-        <Footer />
-        </> ) : 
-      (
-      <>
         <Header body={props.body} setBody={props.setBody} sidebarOff={props.sidebarOff} setSidebarOff={props.setSidebarOff}/>
         <div className="App">
           <Sidebar setSelection={props.setSelection} sidebarOff={props.sidebarOff} setSidebarOff={props.setSidebarOff} />
           <AddTask setBody={props.setBody} setSidebarOff={props.setSidebarOff}/>
         </div>
         <Footer />
-      </> )
+        </> ) :
+      (
+        <>
+          <Header body={props.body} setBody={props.setBody} setSidebarOff={props.setSidebarOff}/>
+          <div className="App">
+            <UserSelection.Provider value={props.selection}>
+              <Sidebar setSelection={props.setSelection} sidebarOff={props.sidebarOff} setSidebarOff={props.setSidebarOff}/>
+              <Content body={props.body} setBody={props.setBody} setSidebarOff={props.setSidebarOff}/>
+            </UserSelection.Provider>
+          </div>
+          <Footer />
+        </> )
 }

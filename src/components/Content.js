@@ -2,11 +2,12 @@ import '../styles/Content.css'
 import React, { useState, useEffect, useContext } from "react";
 import { TaskModule } from "../modules/tasks_module";
 import { UserSelection } from '../App'
-import { format, isBefore, parseISO } from 'date-fns'
 import Storage from '../modules/local_storage_module'
+import EditTask from './EditTask';
 
-export default function Content () {
+export default function Content (props) {
     const [tasks, setTasks] = useState({})
+    const [getTask, setGetTask] = useState('')
     const selection = useContext(UserSelection)
     const counter = 0
 
@@ -24,10 +25,15 @@ export default function Content () {
                 <h2 id="content-header-text">Your Tasks</h2>
             </div>
             <div className="content-container">
-                <LoadTasks select={selection} tasks={tasks} setTasks={setTasks} />
+                <ShowContent body={props.body} setBody={props.setBody} setSidebarOff={props.setSidebarOff} select={selection} tasks={tasks} setTasks={setTasks} getTask={getTask} setGetTask={setGetTask}/>
             </div>
         </div>
     )
+}
+
+function ShowContent (props) {
+    return props.body === 0 ? <LoadTasks select={props.select} tasks={props.tasks} setSidebarOff={props.setSidebarOff} setTasks={props.setTasks} setBody={props.setBody} setGetTask={props.setGetTask}/>
+                            : <EditTask getTask={props.getTask} setBody={props.setBody} setSidebarOff={props.setSidebarOff}/>
 }
 
 function LoadTasks (props) {
@@ -44,28 +50,28 @@ function LoadTasks (props) {
                     className += ' urgent-task'
                     return (
                         <div className={className} id={arrFiltered[key]} key={arrFiltered[key]}>
-                           <TaskCard note={arrFiltered[key]} setTasks={props.setTasks} selection={props.select}/>
+                           <TaskCard note={arrFiltered[key]} setTasks={props.setTasks} selection={props.select} setBody={props.setBody} setGetTask={props.setGetTask} setSidebarOff={props.setSidebarOff}/>
                         </div>
                     )
                 case 'Important':
                     className += ' important-task'
                     return (
                         <div className={className} id={arrFiltered[key]} key={arrFiltered[key]}>
-                            <TaskCard note={arrFiltered[key]} setTasks={props.setTasks} selection={props.select}/>
+                            <TaskCard note={arrFiltered[key]} setTasks={props.setTasks} selection={props.select} setBody={props.setBody} setGetTask={props.setGetTask} setSidebarOff={props.setSidebarOff}/>
                         </div>
                     )
                 default:
                     className += ' normal-task'
                     return (
                         <div className={className} id={arrFiltered[key]} key={arrFiltered[key]}>
-                            <TaskCard note={arrFiltered[key]} setTasks={props.setTasks} selection={props.select}/>
+                            <TaskCard note={arrFiltered[key]} setTasks={props.setTasks} selection={props.select} setBody={props.setBody} setGetTask={props.setGetTask} setSidebarOff={props.setSidebarOff}/>
                         </div>
                     )
             }
         })
 }
 
-function TaskCard ({note, setTasks, selection}) {
+function TaskCard ({note, setTasks, selection, setBody, setGetTask, setSidebarOff}) {
     function crossTask (event) {
         const elementId = event.target.parentNode.id
         const object = Storage.getTask(elementId)
@@ -87,6 +93,14 @@ function TaskCard ({note, setTasks, selection}) {
         setTasks(getTasks(selection))
     }
 
+    function editTask (event) {
+        const note = event.target.id.slice(5)
+
+        setSidebarOff(1)
+        setBody(2)
+        setGetTask(note)
+    }
+
     return (
         <>
         <input id={note + "-check"} type="checkbox" onClick={crossTask} defaultChecked={TaskModule.getTask(note).check} ></input>
@@ -94,7 +108,7 @@ function TaskCard ({note, setTasks, selection}) {
         <p className="tasks-prio" id={note + `-prio-text`}>{TaskModule.getTaskDue(Storage.getTask(note).dueDate)}</p>
         <p className="tasks-due" id={note + `-due-text`}>{TaskModule.getTask(note).dueDate}</p>
         <div className="notes-control-wrapper" id={note  + '-control-wrapper'}>
-            <button className="edit-btn" id={"edit-" + note}></button>
+            <button className="edit-btn" id={"edit-" + note} onClick={editTask}></button>
             <button className="del-btn" id={"del-" + note} onClick={deleteTask}></button>
         </div>
         </>
